@@ -1,66 +1,58 @@
-var staticCaches = ["mobirise-cache-v1"];
+var APP_PREFIX = 'CatGeoProp_'     // Identifier for this app (this needs to be consistent across every cache update)
+var VERSION = 'version_01'              // Version of the off-line cache (change this value everytime you want to update cache)
+var CACHE_NAME = APP_PREFIX + VERSION
+var URLS = [                            // Add URL you want to cache in this list.
+  '/catgeoprop/',                     // If you have separate JS/CSS files,
+  '/catgeoprop/index.html'            // add path to those files here
+]
 
-function inArray(b, c) {
-    return 0 < b.filter(function(a) {
-        return a === c
-    }).length ? !0 : !1
-}
-self.addEventListener("install", function(b) {
-    console.log("SW: Installed and updated");
-    self.skipWaiting()
-});
-self.addEventListener("activate", function(b) {
-    console.log("SW: Activate");
-    b.waitUntil(caches.keys().then(function(b) {
-        return Promise.all(b.map(function(a) {
-            if (!inArray(staticCaches, a)) return caches.delete(a)
-        }))
-    }).then(function() {
-        console.log("SW: First time caching ...");
-        return caches.open(staticCaches).then(function(b) {
-            return fetch("/sw-resources.json").then(function(a) {
-                return a.json()
-            }).then(function(a) {
-                a = JSON.parse(a);
-                a = a.reduce(function(a, b) {
-                    /(?:json|html|mobirise)/i.test(b.split(".").pop()) || a.push(b);
-                    return a
-                }, ["/", "manifest.json"]);
-                return Promise.all(a.map(function(a) {
-                    return fetch(a, {
-                        mode: "no-cors"
-                    }).then(function(d) {
-                        return b.put(a, d)
-                    })
-                }))
-            })
-        }).
-        catch (function(b) {
-            console.error(b)
-        })
-    }))
-});
-self.addEventListener("fetch", function(b) {
-    "http" === b.request.url.slice(0, 4) && b.respondWith(fetch(b.request).then(function(c) {
-        if (404 == c.status) return new Response("Page not found!");
-        var a = c.clone();
-        caches.open(staticCaches).then(function(c) {
-            0 === b.request.url.indexOf("http") && c.matchAll(b.request, {
-                ignoreSearch: !0
-            }).then(function(a) {
-                return Promise.all(a.map(function(a) {
-                    return c.delete(a)
-                }))
-            }).then(function() {
-                c.put(b.request, a)
-            })
-        });
-        return c
-    }).
-    catch (function(c) {
-        console.log("Offline mode.");
-        return caches.match(b.request).then(function(a) {
-            return a ? a : !1
-        })
-    }))
-});
+// Respond with cached resources
+self.addEventListener('fetch', function (e) {
+  console.log('fetch request : ' + e.request.url)
+  e.respondWith(
+    caches.match(e.request).then(function (request) {
+      if (request) { // if cache is available, respond with cache
+        console.log('responding with cache : ' + e.request.url)
+        return request
+      } else {       // if there are no cache, try fetching request
+        console.log('file is not cached, fetching : ' + e.request.url)
+        return fetch(e.request)
+      }
+
+      // You can omit if/else for console.log & put one line below like this too.
+      // return request || fetch(e.request)
+    })
+  )
+})
+
+// Cache resources
+self.addEventListener('install', function (e) {
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(function (cache) {
+      console.log('installing cache : ' + CACHE_NAME)
+      return cache.addAll(URLS)
+    })
+  )
+})
+
+// Delete outdated caches
+self.addEventListener('activate', function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keyList) {
+      // `keyList` contains all cache names under your username.github.io
+      // filter out ones that has this app prefix to create white list
+      var cacheWhitelist = keyList.filter(function (key) {
+        return key.indexOf(APP_PREFIX)
+      })
+      // add current cache name to white list
+      cacheWhitelist.push(CACHE_NAME)
+
+      return Promise.all(keyList.map(function (key, i) {
+        if (cacheWhitelist.indexOf(key) === -1) {
+          console.log('deleting cache : ' + keyList[i] )
+          return caches.delete(keyList[i])
+        }
+      }))
+    })
+  )
+})
