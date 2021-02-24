@@ -1,2 +1,1 @@
-# catgeoprop
-GitHub Pages
+# catgeopropGitHub Pages with catalyst geometrical properties calculation programpossibility to install PWA of this webpage
