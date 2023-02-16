@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html  >
 <head>
-  <!-- Site made with Mobirise Website Builder v4.11.6, https://mobirise.com -->
+  <!-- Site made with Mobirise Website Builder v5.8.0, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v4.11.6, mobirise.com">
+  <meta name="generator" content="Mobirise v5.8.0, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/deltapi-1.ico" type="image/x-icon">
-  <meta name="description" content="">
+  <meta name="description" content="catgeoprop.mobirisesite.com from
+deltapi@mailinator.com account">
+  
   
   <title>Home</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Barlow:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+
   
-  
+  <style>#mobiriseBanner {display: none;}</style>
+
   <link rel="canonical" href="https://patrickdegand.github.io/catgeoprop/" />
-<meta name="theme-color" content="#149dcc">
-<link rel="manifest" href="manifest.json">
-<script src="sw-connect.js"></script></head>
+</head>
 <body>
+  
   <section class="mbr-section content4 cid-ryECIAVqzz" id="content4-0">
 
     
 
-    <div class="container">
-        <div class="media-container-row">
-            <div class="title col-12 col-md-8">
-                <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                    CatGeoProp</h2>
-                <div id="texteToolbar " class="texteToolbar">
-<table id="toolbar" class="mce-item-table" style="text-align:center;"><tbody>
-<tr id="icons"><th><button onclick="calculate(form1)" class="mbri-setting3 mbr-iconfont" style="font-size: 44px;"></button></th><th>&nbsp;</th>
-<th><button onclick="reset(form1)" class="mbri-update mbr-iconfont" style="font-size: 44px;float:right;"></button></th></tr>
-<tr id="description"><td>calc</td><td>&nbsp;</td><td>reset</td></tr></tbody></table></div>&nbsp;&nbsp;<div id="texteToolbar " class="texteToolbar">&nbsp;<br></div>
+<div class="container">
+<div class="media-container-row">
+<div class="title col-12 col-md-8">
+<h2 class="align-center pb-3 mbr-fonts-style display-2">CatGeoProp</h2>
 <div id="formArea"><form name="form1"><div id="data">
 <table border="2"><tbody><tr><td>Type of shape : &nbsp;</td><td>
 <select name="Type" onchange="resetoutput(form1)" size="1">
@@ -73,6 +73,13 @@ Tube diameter (mm) or real void fraction (if &lt;1.0) : &nbsp;<input name="tubed
 </form></div>
 <div id="draw"><canvas height="350" id="FuriaCanvas" width="400"></canvas></div>
 </div>
+
+</div>
+<div class="mbr-section-btn align-center py-4">
+<a class="btn btn-primary display-4" href="javascript:calculate(form1)">Calculate</a>
+<a class="btn btn-black-outline display-4" href="javascript:reset(form1)">Reset</a></div>
+</div>
+
 <script>
 function formatnb(nb, N) {
     return Math.round(Math.pow(10,N)*nb)/Math.pow(10,N);
@@ -453,55 +460,18 @@ function Dome(odiam,cheight,theight,scale) {
     ctx.arc(300,150-(th/2-rd),rd,3/2*Math.PI+alphad,3/2*Math.PI-alphad,true);
     ctx.stroke();
 }
-</script>
-</div>
-                <div class="mbr-section-btn align-center py-4"><a class="btn btn-primary display-4" href="javascript:calculate(form1)">Calculate</a>
-                    <a class="btn btn-black-outline display-4" href="javascript:reset(form1)">Reset</a></div><button onclick="install()">
-  Install
-</button>
-            </div>
-<script>
-  
-    let deferredPrompt = null;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-});
-
-async function install() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    console.log(deferredPrompt)
-    deferredPrompt.userChoice.then(function(choiceResult){
-
-      if (choiceResult.outcome === 'accepted') {
-      console.log('Your PWA has been installed');
-    } else {
-      console.log('User chose to not install your PWA');
-    }
-
-    deferredPrompt = null;
-
-    });
-
- 
-  }
-}
-  </script>
-    
+</script>    
 </section>
 
 
-  <section class="engine"><a href="https://mobirise.info/v">free html templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/popper/popper.min.js"></script>
+<script src="assets/popper/popper.min.js"></script>
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/theme/js/script.js"></script>
   
+  <script>!function(){if(document.getElementById('top-1')){var element = document.getElementById('top-1');element.parentNode.removeChild(element);}}();</script>
   
 </body>
 </html>
