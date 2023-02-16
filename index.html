@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/deltapi-1.ico" type="image/x-icon">
   <meta name="description" content="catgeoprop.mobirisesite.com from deltapi@mailinator.com account">
-  <title>Home</title>
+  <title>DeltaPi CatGeoProp</title>
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
@@ -20,7 +20,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   <style>#mobiriseBanner {display: none;}</style>
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/catgeoprop/manifest.json">
   <link rel="canonical" href="https://patrickdegand.github.io/catgeoprop/" />
 </head>
 <body>
@@ -467,6 +467,13 @@ function Dome(odiam,cheight,theight,scale) {
   <script src="assets/theme/js/script.js"></script>
   
   <script>!function(){if(document.getElementById('top-1')){var element = document.getElementById('top-1');element.parentNode.removeChild(element);}}();</script>
-  <script src="index.js"></script>
+  <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/catgeoprop/sw.js',
+          {scope: '/catgeoprop/'}
+        )
+      }
+  </script>
 </body>
 </html>
