@@ -1,11 +1,11 @@
 // Cached core static resources
 self.addEventListener("install",e=>{
 e.waitUntil(
-caches.open("static").then(cache=>{
-return cache.addAll(["/",
-                     "index.html",
-                     "images/logo192.png"]);
-})
+  caches.open("static").then(cache=>{
+    return cache.addAll(["/",
+                       "index.html",
+                       "assets/icons/512x512.png"]);
+  })
 );
 });
 // Fatch resources
